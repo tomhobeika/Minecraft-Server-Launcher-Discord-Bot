@@ -155,4 +155,4 @@ async def mcRCON(ctx):
 async def mcHelp(ctx):
 	await ctx.send('Welcome to the Minecraft Server Launcher Discord Bot!\n```Currently Loaded Server: Winter 2021 (5gb)``````!mcRun - Opens the Minecraft server.\n!mcClose - Closes the Minecraft server.\n!mcStatus - Displays server stats.\n!mcRain - Sets in-game weather to "clear".\n!mcOpenDebug - Makes server status display as open within code logic.\n!mcCloseDebug - Makes server status display as closed within code logic.```')
 
-bot.run('ODU5NDc0NTA2MzMzODE0ODI1.YNtOAg.QoVIpsx0e5ACcFnrqbSpL0IP19k')
+bot.run() # Put Discord client ID here to run bot
