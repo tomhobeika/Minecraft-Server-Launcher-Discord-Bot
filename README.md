@@ -1,2 +1,5 @@
-# Minecraft-Se[README.txt](https://github.com/tomhobeika/Minecraft-Server-Launcher-Discord-Bot/files/7036829/README.txt)
-rver-Launcher-Discord-Bot
+# Minecraft-Server-Launcher-Discord-Bot
+A very simple bot that allows discord users to open your personal Minecraft server.
+
+NOT SECURE! This is designed specifically for PERSONAL Minecraft and Discord servers.
+
