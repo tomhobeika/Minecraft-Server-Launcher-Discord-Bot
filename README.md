@@ -15,6 +15,8 @@ rconPassword = Your RCON password in your server propeties file. A password is r
 
 fileName = The name of your .bat file that launches your server. The default value is "5gb.bat".
 
+serverName = A completely optional name of your server for console information pages.
+
 HOW TO RUN BOT:
 1. Create a discord bot throuh https://discord.com/developers/applications and invite it to your Discord server. 
 
