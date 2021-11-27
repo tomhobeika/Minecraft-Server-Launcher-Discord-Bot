@@ -2,14 +2,15 @@ import discord
 import re
 import os
 import time
+import datetime
 import signal
 import subprocess
 from subprocess import Popen
 from discord.ext import commands
 from mctools import RCONClient
 from mctools import QUERYClient
+from colorama import Fore, Back, Style,init
 import sys
-
 # Setup Code
 pid = ""
 serverOpen = False	
@@ -17,12 +18,14 @@ HOST = "127.0.0.1" #Local address
 PORT = 25575
 query = QUERYClient(HOST)
 rcon = RCONClient(HOST, port = PORT)
-count = 0
+
+# User Inputs
 discordClientId = ""
 rconPassword = ''
-fileName = "5gb.bat"
+fileName = ""
+serverName = ""
 
-bot = commands.Bot(command_prefix='!')
+bot = commands.Bot(command_prefix='!') # You can change this command prefix if you like, but it will not change the help pages.
 
 def checkServerOpen():
 	try:
@@ -30,6 +33,7 @@ def checkServerOpen():
 		return True
 	except:
 		return False
+
 
 #Server Opener
 @bot.command()
@@ -64,7 +68,7 @@ async def mcRun(ctx):
 		except Exception as e:
 			await ctx.send('Something fucked up. Tom can\'t code.')
 			print(e)
-		count = count + 1	
+			
 
 #Server Closer
 @bot.command()
@@ -91,6 +95,10 @@ async def mcClose(ctx):
 			time.sleep(10)
 			rcon.stop() # Closes RCON connection
 			await ctx.send('Server is closed.')
+			if serverOpen == False:
+				print("Server successfully closed!")
+			else:
+				print("Something went wrong, restart the program/Minecraft server if bugs arise.")
 		except Exception as e:
 			await ctx.send('Something went wrong, annoy Tom if it looks like it\'s something major.')
 			print(e)
@@ -129,6 +137,7 @@ async def mcRCON(ctx):
 	if auth != True:
 		try:	
 			rcon.login(rconPassword)
+			print("Success! RCON authenticated!")
 		except Exception as e:
 			print(e)
 			await ctx.send('Failed to connect to RCON.')
@@ -138,6 +147,13 @@ async def mcRCON(ctx):
 # Help
 @bot.command()
 async def mcHelp(ctx):
-	await ctx.send('Welcome to the Minecraft Server Launcher Discord Bot!\n```Currently Loaded Server: Winter 2021 (5gb)``````!mcRun - Opens the Minecraft server.\n!mcClose - Closes the Minecraft server.\n!mcStatus - Displays server stats.\n!mcRain - Sets in-game weather to "clear".```')
+	await ctx.send('Welcome to the Minecraft Server Launcher Discord Bot!\n```Currently Loaded Server: {0} ({1})``````!mcRun - Opens the Minecraft server.\n!mcClose - Closes the Minecraft server.\n!mcStatus - Displays server stats.\n!mcRain - Sets in-game weather to "clear".```'.format(serverName,fileName))
 
+print(Fore.GREEN+"Welcome to the Minecraft Server Launcher Discord Bot!")
+print(Fore.WHITE+"\nCurrently Loaded Server: {0} ({1})\n!mcRun - Opens the Minecraft server.\n!mcClose - Closes the Minecraft server.\n!mcStatus - Displays server stats.\n!mcRain - Sets in-game weather to \"clear\".".format(serverName,fileName))
+print(Fore.CYAN+"\nUse these commands in your discord server to control your Minecraft server.")
+
+print(Fore.WHITE+"\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+print("Any errors or internal system messages will show up under this line.")
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 bot.run(discordClientId) # Put Discord client ID here to run bot
