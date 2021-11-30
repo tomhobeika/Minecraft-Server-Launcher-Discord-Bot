@@ -1,0 +1,1 @@
+java -Xms5120M -Xmx5120M -jar server.jar nogui
